@@ -10,14 +10,21 @@ class SearchBar extends Component{
     super(props);
     this.state = {text: '',isChecked:false};
     this.handleChange = this.handleChange.bind(this);
+    this.handleCheckBox=this.handleCheckBox.bind(this);
   }
-  handleChange()
+  handleChange(text)
+  {
+    this.setState({text})
+
+    this.props.handleInput(this.state.text,this.state.isChecked);
+  }
+  handleCheckBox()
   {
     this.setState(prevState => ({
       isChecked: !prevState.isChecked
-    }));
-    //this.setState({isChecked:!isChecked});
-    //console.log('I am checked',this.state.isChecked);
+    }),()=>{this.props.handleInput(this.state.text,this.state.isChecked);});
+
+
   }
   render()
   {
@@ -27,12 +34,15 @@ class SearchBar extends Component{
         <TextInput
          style={{height: 40,margin:25,borderWidth:1,width:300}}
          placeholder="     Search..."
-         onChangeText={(text) => this.setState({text})}
+         onChangeText={this.handleChange}
        />
        <CheckBox
-         containerStyle={styles.containStyle} checkboxStyle={styles.checkboxStyle} labelStyle={styles.labStyle} label='Show only stocked'
+         containerStyle={styles.containStyle}
+         checkboxStyle={styles.checkboxStyle}
+         labelStyle={styles.labStyle}
+         label='Show only stocked'
          checked={this.state.isChecked}
-         onChange={this.handleChange}
+         onChange={this.handleCheckBox}
        />
       </View>
     );
@@ -83,7 +93,8 @@ class ProductTable extends Component {
             {
               entries.push(<ProdCategory categ={prod.category}/>);
             }
-            entries.push(<ProdDetails name={prod.name} price={prod.price} stock={prod.stocked}/>)
+            if(!this.props.isStock || prod.stocked)
+              entries.push(<ProdDetails name={prod.name} price={prod.price} stock={prod.stocked}/>)
             lastCat=prod.category;
           }
         );
@@ -105,6 +116,19 @@ class ProductTable extends Component {
 
 class MockApp extends Component {
 
+    constructor(props)
+    {
+      super(props);
+      this.state={textInput:"",stockOnly:false}
+      this.handleUserInput = this.handleUserInput.bind(this);
+    }
+    handleUserInput(filterText, inStockOnly) {
+    this.setState({
+        textInput:filterText,
+        stockOnly:inStockOnly
+    });
+  }
+
     render() {
       var PRODUCTS = [
         {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
@@ -113,11 +137,19 @@ class MockApp extends Component {
         {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
         {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
         {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
+
       ];
         return (
             <View style={{flex:1}}>
-                <SearchBar />
-                <ProductTable products={PRODUCTS}/>
+                <SearchBar
+                  input={this.state.textInput}
+                  isStock={this.state.stockOnly}
+                  handleInput={this.handleUserInput}
+                />
+                <ProductTable
+                products={PRODUCTS}
+                isStock={this.state.stockOnly}
+                handleInput={this.handleUserInput}/>
             </View>
 
         );
