@@ -191,7 +191,8 @@
 // });
 //
 // AppRegistry.registerComponent('AwesomeProject', () => Init);
-import React, {Component} from 'react';
-import {AppRegistry, Text, View,TextInput,ListView,StyleSheet} from 'react-native';
-import Init from './application/components/Init'
-AppRegistry.registerComponent('AwesomeProject', () => Init);
+//import React, {Component} from 'react';
+import {AppRegistry} from 'react-native';
+import Init from './application/components/firstApp/Init'
+import Stopwatch from './application/components/secondApp/Stopwatch'
+AppRegistry.registerComponent('AwesomeProject', () => Stopwatch);
