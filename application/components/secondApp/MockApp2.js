@@ -3,7 +3,7 @@ import {AppRegistry, Text, View,TextInput,ListView,StyleSheet} from 'react-nativ
 
 
 const DAYS=['Sunday','Monday','Tuesday','WednesDay','Thursday','Friday','Saturday'];
-export default class Stopwatch extends Component{
+export default class MockApp2 extends Component{
 
 constructor(props)
 {

@@ -194,5 +194,5 @@
 //import React, {Component} from 'react';
 import {AppRegistry} from 'react-native';
 import Init from './application/components/firstApp/Init'
-import Stopwatch from './application/components/secondApp/Stopwatch'
-AppRegistry.registerComponent('AwesomeProject', () => Stopwatch);
+import MockApp2 from './application/components/secondApp/MockApp2'
+AppRegistry.registerComponent('AwesomeProject', () => MockApp2);
