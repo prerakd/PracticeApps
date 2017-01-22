@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {AppRegistry, Text, View,TextInput,ListView,StyleSheet} from 'react-native';
-
-
-const DAYS=['Sunday','Monday','Tuesday','WednesDay','Thursday','Friday','Saturday'];
+import Moment from 'moment';
+import DayItem from './DayItem'
+//const DAYS=['Sunday','Monday','Tuesday','WednesDay','Thursday','Friday','Saturday'];
 export default class MockApp2 extends Component{
 
 constructor(props)
@@ -12,14 +12,13 @@ constructor(props)
 }
 createList()
 {
-  return (
-    DAYS.map(function(day){
-      return (
-      <DayItem day={day} />
-    );
-    }
-  )
-  );
+
+  dayComponents=[];
+  for(i=0;i<7;i++)
+  {
+    dayComponents.push(<DayItem day= {Moment().add(i,'days').format('dddd')} offset={i}/>)
+  }
+  return dayComponents;
 }
 render()
 {
@@ -31,14 +30,6 @@ render()
     </View>
   );
 }
-}
-class DayItem extends Component{
-  render()
-  {
-    return(
-      <Text>{this.props.day}</Text>
-    );
-  }
 }
 const styles=StyleSheet.create({
   viewStyle:{
