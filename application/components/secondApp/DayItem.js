@@ -1,11 +1,19 @@
 import React, {Component} from 'react';
-import {AppRegistry, Text, View,TextInput,ListView,StyleSheet} from 'react-native';
+import {AppRegistry, Text, View,TextInput,ListView,StyleSheet,TouchableHighlight} from 'react-native';
+
+
+import { Actions } from 'react-native-router-flux';
 
 export default class DayItem extends Component{
   constructor(props)
   {
     super(props);
     this.setStyle=this.setStyle.bind(this);
+    this.check=this.check.bind(this);
+  }
+  check()
+  {
+    console.log("here");
   }
   setStyle()
   {
@@ -25,7 +33,7 @@ export default class DayItem extends Component{
   render()
   {
     return(
-      <Text style={this.setStyle()}>{this.props.day}</Text>
+        <Text style={this.setStyle()} onPress={() => Actions.todo()}>{this.props.day}</Text>
     );
   }
 
