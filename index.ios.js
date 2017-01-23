@@ -193,6 +193,7 @@
 // AppRegistry.registerComponent('AwesomeProject', () => Init);
 //import React, {Component} from 'react';
 import {AppRegistry} from 'react-native';
-import Init from './application/components/firstApp/Init'
-import MockApp2 from './application/components/secondApp/MockApp2'
-AppRegistry.registerComponent('AwesomeProject', () => MockApp2);
+//import Init from './application/components/firstApp/Init'
+//import MockApp2 from './application/components/secondApp/MockApp2'
+import Stopwatch from './application/components/thirdApp/Stopwatch'
+AppRegistry.registerComponent('AwesomeProject', () => Stopwatch);
