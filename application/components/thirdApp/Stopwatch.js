@@ -12,7 +12,35 @@ export default class extends Component{
     this.lapPressed=this.lapPressed.bind(this);
     this.resetPressed=this.resetPressed.bind(this);
     this.setButtonStyle=this.setButtonStyle.bind(this);
-    this.state={timeElapsed:null,isRunning:false,resetDisable:true};
+    this.displayLaps=this.displayLaps.bind(this);
+
+    this.state={
+      timeElapsed:null,isRunning:false,resetDisable:true,laps:[],lapDisable:true,
+      ds:new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+    }
+    };
+
+
+
+
+  displayLaps()
+  {
+    let len=this.state.laps.length;
+    entries=this.state.laps.map(function(lap,ind){
+      return(
+      <View style={styles.lapStyle}>
+        <Text style={styles.textStyle1}>Lap #{len-ind}:</Text>
+        <Text style={styles.textStyle1}>{lap}</Text>
+      </View>);
+    })
+    //entries=this.props.laps;
+    entries=this.state.ds.cloneWithRows(entries);
+    return(
+        <ListView
+        dataSource={entries}
+      renderRow={(rowData) =><View>{rowData}</View>}/>
+
+    );
   }
 
   setButtonStyle(){
@@ -33,7 +61,7 @@ export default class extends Component{
       if(this.state.isRunning)
       {
         clearInterval(this.refId);
-        this.setState({isRunning:false,resetDisable:false});
+        this.setState({isRunning:false,resetDisable:false,lapDisable:true});
         return;
       }
     else{
@@ -43,20 +71,23 @@ export default class extends Component{
               timeElapsed:new Date()-startTime,
               isRunning:true,
               resetDisable:true,
+              lapDisable:false,
             }
           )},30);
       }
     }
   lapPressed()
   {
-
+      this.setState({
+        laps:[convert(this.state.timeElapsed)].concat(this.state.laps)
+      });
   }
   resetPressed()
   {
 
 
       clearInterval(this.refId);
-      this.setState({isRunning:false,timeElapsed:null,resetDisable:true});
+      this.setState({isRunning:false,timeElapsed:null,resetDisable:true,lapDisable:true,laps:[]});
   }
 
   render(){
@@ -71,16 +102,17 @@ export default class extends Component{
               <TouchableHighlight underlayColor="white" onPress={this.startPressed} style={[styles.buttonStyle,this.setButtonStyle()]}>
                 <Text>{this.state.isRunning?'Pause':'Start'}</Text>
               </TouchableHighlight>
-              <TouchableHighlight underlayColor="white" onPress={this.stopPressed} style={[styles.buttonStyle, styles.lapButon]}>
+              <TouchableHighlight disabled={this.state.lapDisable} underlayColor="white" onPress={this.lapPressed} style={[styles.buttonStyle, styles.lapButon]}>
                 <Text >Lap</Text>
               </TouchableHighlight>
-              <TouchableHighlight disabled={this.state.resetDisable}underlayColor="white" onPress={this.resetPressed} style={[styles.buttonStyle, styles.lapButon]}>
-                <Text >Reset</Text>
+              <TouchableHighlight disabled={this.state.resetDisable} underlayColor="white" onPress={this.resetPressed} style={[styles.buttonStyle, styles.lapButon]}>
+                <Text>Reset</Text>
               </TouchableHighlight>
             </View>
       </View>
+
       <View style={styles.Lower}>
-        <Text>List of laps</Text>
+        {this.displayLaps()}
       </View>
 
 
@@ -134,8 +166,14 @@ styles=StyleSheet.create({
     width:100,
     justifyContent:'center',
     alignItems:"center",
+  },
+  lapStyle:{
+    justifyContent:"space-around",
+    flexDirection:"row",
 
-
+  },
+  textStyle1:{
+    fontSize:20,
   }
 
 
