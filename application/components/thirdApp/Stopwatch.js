@@ -15,7 +15,12 @@ export default class extends Component{
     this.displayLaps=this.displayLaps.bind(this);
 
     this.state={
-      timeElapsed:null,isRunning:false,resetDisable:true,laps:[],lapDisable:true,
+      timeElapsed:null,
+      isRunning:false,
+      resetDisable:true,
+      laps:[],
+      lapDisable:true,
+      offset:0,
       ds:new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     }
     };
@@ -56,19 +61,19 @@ export default class extends Component{
   }
   startPressed()
   {
-
       let startTime=new Date();
       if(this.state.isRunning)
       {
+
         clearInterval(this.refId);
-        this.setState({isRunning:false,resetDisable:false,lapDisable:true});
+        this.setState({isRunning:false,resetDisable:false,lapDisable:true,offset:this.state.offset+this.state.timeElapsed});
         return;
       }
     else{
         this.refId=setInterval(
           ()=>{this.setState(
             {
-              timeElapsed:new Date()-startTime,
+              timeElapsed:new Date()-startTime+this.state.offset,
               isRunning:true,
               resetDisable:true,
               lapDisable:false,
@@ -87,7 +92,7 @@ export default class extends Component{
 
 
       clearInterval(this.refId);
-      this.setState({isRunning:false,timeElapsed:null,resetDisable:true,lapDisable:true,laps:[]});
+      this.setState({isRunning:false,timeElapsed:null,resetDisable:true,lapDisable:true,laps:[],offset:0});
   }
 
   render(){
@@ -108,28 +113,24 @@ export default class extends Component{
               <TouchableHighlight disabled={this.state.resetDisable} underlayColor="white" onPress={this.resetPressed} style={[styles.buttonStyle, styles.lapButon]}>
                 <Text>Reset</Text>
               </TouchableHighlight>
-            </View>
-      </View>
-
-      <View style={styles.Lower}>
-        {this.displayLaps()}
-      </View>
-
-
-
-        {/* <ShowTime />
-        <ShowButtons /> */}
-        {/* <ShowLaps /> */}
-        {/* <View style={styles.Upper}>
-          <View style={styles.textStyle}>
-            <Text>00.00.00</Text>
+          </View>
         </View>
-        <View style={styles.viewSt}>
-          <Text>Hi</Text>
-          <Text>Hello</Text>
+        <View style={styles.Lower}>
+          {this.displayLaps()}
         </View>
-        </View> */}
       </View>
+
+      // {/* <ShowLaps /> */}
+      // {/* <View style={styles.Upper}>
+      //   <View style={styles.textStyle}>
+      //     <Text>00.00.00</Text>
+      // </View>
+      // <View style={styles.viewSt}>
+      //   <Text>Hi</Text>
+      //   <Text>Hello</Text>
+      // </View>
+      // </View> */}
+
   );
   }
 }
