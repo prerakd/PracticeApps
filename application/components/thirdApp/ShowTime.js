@@ -7,16 +7,14 @@ export default class ShowTime extends Component{
 
     return(
       <View style={styles.textStyle}>
-        <Text style={styles.timeStyle}>{convert(this.state.timeElapsed)}</Text>
+        <Text style={styles.timeStyle}>{this.props.time}</Text>
       </View>
     );
   }
 }
-styles=StyleSheet.create({
+let styles=StyleSheet.create({
   textStyle:{
     flex:1,
-    borderWidth:4,
-    borderColor:"black",
     justifyContent:"center",
     alignItems:"center",
 

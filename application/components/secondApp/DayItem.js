@@ -10,6 +10,9 @@ export default class DayItem extends Component{
     super(props);
     this.setStyle=this.setStyle.bind(this);
     this.check=this.check.bind(this);
+    this.state={
+      todoList:[],
+    }
   }
   check()
   {
@@ -30,10 +33,23 @@ export default class DayItem extends Component{
         lineHeight:lh,
       }
   }
+  addItmes = (newItems) =>
+  {
+        this.setState({
+          todoList:newItems
+        });
+
+  }
   render()
   {
+    let o={
+      data:this.state.todoList,
+      day:this.props.day,
+      addmain:this.addItmes,
+      list:this.state.todoList,
+    }
     return(
-        <Text style={this.setStyle()} onPress={() => Actions.todo()}>{this.props.day}</Text>
+        <Text style={this.setStyle()} onPress={() => Actions.todo(o)}>{this.props.day}</Text>
     );
   }
 

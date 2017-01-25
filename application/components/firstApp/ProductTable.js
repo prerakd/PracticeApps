@@ -29,8 +29,6 @@ export default class ProductTable extends Component {
             lastCat=prod.category;
           }
         );
-
-        //const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         entries=this.state.ds.cloneWithRows(entries);
 
 

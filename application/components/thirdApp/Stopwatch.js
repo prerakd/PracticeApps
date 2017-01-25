@@ -100,9 +100,7 @@ export default class extends Component{
     return(
       <View style={styles.container}>
         <View style={styles.Upper}>
-          <View style={styles.textStyle}>
-            <Text style={styles.timeStyle}>{convert(this.state.timeElapsed)}</Text>
-          </View>
+          <ShowTime time={convert(this.state.timeElapsed)}/>
           <View style={styles.viewSt}>
               <TouchableHighlight underlayColor="white" onPress={this.startPressed} style={[styles.buttonStyle,this.setButtonStyle()]}>
                 <Text>{this.state.isRunning?'Pause':'Start'}</Text>
@@ -135,7 +133,7 @@ export default class extends Component{
   }
 }
 
-styles=StyleSheet.create({
+var styles=StyleSheet.create({
   container:{
     flex:1,
   },

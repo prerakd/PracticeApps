@@ -15,29 +15,30 @@ export default class ShowButtons extends Component{
   render()
   {
     return(
-          <View style={[styles.Lower]}>
-            <TouchableHighlight underlayColor="gray" onPress={this.pressed} >
-              <Text alignItems="center">Start</Text>
-            </TouchableHighlight>
-            <TouchableHighlight underlayColor="gray" onPress={this.pressed}>
-              <Text>Stop</Text>
-
-            </TouchableHighlight>
-
-          </View>
+      <View style={styles.viewSt}>
+          <TouchableHighlight underlayColor="white" onPress={this.startPressed} style={[styles.buttonStyle,this.setButtonStyle()]}>
+            <Text>{this.state.isRunning?'Pause':'Start'}</Text>
+          </TouchableHighlight>
+          <TouchableHighlight disabled={this.state.lapDisable} underlayColor="white" onPress={this.lapPressed} style={[styles.buttonStyle, styles.lapButon]}>
+            <Text >Lap</Text>
+          </TouchableHighlight>
+          <TouchableHighlight disabled={this.state.resetDisable} underlayColor="white" onPress={this.resetPressed} style={[styles.buttonStyle, styles.lapButon]}>
+            <Text>Reset</Text>
+          </TouchableHighlight>
+      </View>
 
   );
   }
 }
 
-styles=StyleSheet.create({
+let styles=StyleSheet.create({
 
-viewSt:{
-  flex:1,
-  justifyContent:"space-around",
-
-
-},
+  viewSt:{
+    flex:3,
+    flexDirection:"row",
+    justifyContent:"space-around",
+    alignItems:"center",
+  },
 Lower:{
   flex:1,
   borderWidth:5,

@@ -20,7 +20,6 @@ export default class Init2 extends Component{
         key="todo"
         component={ToDo}
         title="SecondScreen"
-        hideNavBar
       />
 
     </Scene>
