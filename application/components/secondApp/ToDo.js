@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {AppRegistry, Text, View,TextInput,ListView,StyleSheet,TouchableHighlight,Button} from 'react-native';
 import { Actions } from 'react-native-router-flux';
-
 export default class ToDo extends Component{
   constructor(props)
   {
@@ -21,11 +20,10 @@ export default class ToDo extends Component{
         newToDo:'',
       })
     }
-      //console.log("hello");
   }
   displayTodos=()=>
   {
-    //console.log("hello");
+
     entries=this.state.todoList.map(function(todo){
       return(
         <View>
@@ -48,7 +46,6 @@ export default class ToDo extends Component{
   }
   doSomething=() =>
   {
-    //console.log("something happend");
     this.props.addmain(this.state.todoList)
     Actions.pop();
   }

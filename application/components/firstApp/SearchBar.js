@@ -1,22 +1,19 @@
 import React, {Component} from 'react';
 import CheckBox from 'react-native-checkbox';
 import {View,StyleSheet,TextInput} from 'react-native';
+import styles from './myStyles.js'
 
 export default class SearchBar extends Component{
   constructor(props)
   {
     super(props);
     this.state = {text: '',isChecked:false};
-    this.handleChange = this.handleChange.bind(this);
-    this.handleCheckBox=this.handleCheckBox.bind(this);
   }
-  handleChange(text)
+  handleChange=(text)=>
   {
-    this.setState({text})
-
-    this.props.handleInput(this.state.text,this.state.isChecked);
+    this.setState({text},()=>this.props.handleInput(this.state.text,this.state.isChecked));
   }
-  handleCheckBox()
+  handleCheckBox=()=>
   {
     this.setState(prevState => ({
       isChecked: !prevState.isChecked
@@ -46,27 +43,27 @@ export default class SearchBar extends Component{
     );
   }
 }
-const styles = StyleSheet.create({
-  labStyle:{
-    color:"black",
-  },
-  checkboxStyle:{
-    height:15,
-    width:15,
-    marginLeft:25
-  },
-  containStyle:{
-    backgroundColor:"steelblue"
-  },
-  textStyle:{
-    height: 40,
-    margin:25,
-    borderWidth:1,
-    width:300
-  },
-  viewStyle:
-    {flexGrow: 1,
-      backgroundColor: "steelblue"
-    }
-
-});
+// const styles = StyleSheet.create({
+//   labStyle:{
+//     color:"black",
+//   },
+//   checkboxStyle:{
+//     height:15,
+//     width:15,
+//     marginLeft:25
+//   },
+//   containStyle:{
+//     backgroundColor:"steelblue"
+//   },
+//   textStyle:{
+//     height: 40,
+//     margin:25,
+//     borderWidth:1,
+//     width:300
+//   },
+//   viewStyle:
+//     {flexGrow: 1,
+//       backgroundColor: "steelblue"
+//     }
+//
+// });

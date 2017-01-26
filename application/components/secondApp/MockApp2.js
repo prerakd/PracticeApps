@@ -1,24 +1,16 @@
 import React, {Component} from 'react';
 import {AppRegistry, Text, View,TextInput,ListView,StyleSheet,TouchableHighlight} from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import Moment from 'moment';
 import DayItem from './DayItem'
 
-import { Actions } from 'react-native-router-flux';
-
-//const DAYS=['Sunday','Monday','Tuesday','WednesDay','Thursday','Friday','Saturday'];
 export default class MockApp2 extends Component{
 
 constructor(props)
 {
   super(props);
-  this.createList=this.createList.bind(this);
-  this.check=this.check.bind(this);
 }
-check()
-{
-  console.log("here");
-}
-createList()
+createList=() =>
 {
 
   dayComponents=[];
@@ -30,7 +22,6 @@ createList()
 }
 render()
 {
-  //list=
   return(
     <View  style={styles.viewStyle}>
       <Text>Days of our lives</Text>
@@ -44,7 +35,4 @@ const styles=StyleSheet.create({
     flex:1,
     justifyContent:'center',
     alignItems:'center'
-  }
-
-}
-)
+  }})

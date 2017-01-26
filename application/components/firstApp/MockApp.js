@@ -1,21 +1,28 @@
 import React, {Component} from 'react';
+import {View} from 'react-native';
 import SearchBar from './SearchBar';
 import ProductTable from './ProductTable';
-import {View} from 'react-native';
+
 
 export default class MockApp extends Component {
 
     constructor(props)
     {
       super(props);
-      this.state={textInput:"",stockOnly:false}
-      this.handleUserInput = this.handleUserInput.bind(this);
+
+      this.state={
+        textInput:"",
+        stockOnly:false,
+        products:props.products
+      }
     }
-    handleUserInput(filterText, inStockOnly) {
+
+    handleUserInput = (filterText, inStockOnly) => {
     this.setState({
         textInput:filterText,
-        stockOnly:inStockOnly
-    });
+        stockOnly:inStockOnly,
+    },
+  );
   }
 
     render() {
@@ -27,9 +34,9 @@ export default class MockApp extends Component {
                   handleInput={this.handleUserInput}
                 />
                 <ProductTable
-                products={this.props.products}
+                products={this.state.products}
                 isStock={this.state.stockOnly}
-                handleInput={this.handleUserInput}/>
+                  input={this.state.textInput} />
             </View>
 
         );

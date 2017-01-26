@@ -1,19 +1,11 @@
 import React, {Component} from 'react';
 import MockApp from './MockApp'
+import dummyData from './dummyData';
 export default class Init extends Component{
   render()
   {
-    var PRODS = [
-      {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
-      {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
-      {category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
-      {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
-      {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
-      {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
-
-    ];
     return(
-      <MockApp products={PRODS}/>
+      <MockApp products={dummyData.data}/>
     )
   }
 }

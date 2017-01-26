@@ -200,6 +200,6 @@ import YoDawgApp from './/application/components/navigationBasics/YoDawgApp'
 import Init2 from './application/components/secondApp/Init2'
 import ToDo from './application/components/secondApp/ToDo'
 // AppRegistry.registerComponent('AwesomeProject', () => Init);
-AppRegistry.registerComponent('AwesomeProject', () => Init2);
+AppRegistry.registerComponent('AwesomeProject', () => Init);
 // AppRegistry.registerComponent('AwesomeProject', () => Stopwatch);
 //AppRegistry.registerComponent('AwesomeProject', () => YoDawgApp);

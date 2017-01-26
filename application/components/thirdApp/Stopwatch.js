@@ -8,11 +8,6 @@ export default class extends Component{
   constructor(props)
   {
     super(props);
-    this.startPressed=this.startPressed.bind(this);
-    this.lapPressed=this.lapPressed.bind(this);
-    this.resetPressed=this.resetPressed.bind(this);
-    this.setButtonStyle=this.setButtonStyle.bind(this);
-    this.displayLaps=this.displayLaps.bind(this);
 
     this.state={
       timeElapsed:null,
@@ -28,7 +23,7 @@ export default class extends Component{
 
 
 
-  displayLaps()
+  displayLaps= () =>
   {
     let len=this.state.laps.length;
     entries=this.state.laps.map(function(lap,ind){
@@ -38,7 +33,6 @@ export default class extends Component{
         <Text style={styles.textStyle1}>{lap}</Text>
       </View>);
     })
-    //entries=this.props.laps;
     entries=this.state.ds.cloneWithRows(entries);
     return(
         <ListView
@@ -48,7 +42,7 @@ export default class extends Component{
     );
   }
 
-  setButtonStyle(){
+  setButtonStyle=()=>{
     let col;
     if(this.state.isRunning)
       col='#ff0000';
@@ -59,7 +53,7 @@ export default class extends Component{
       borderColor:col
     });
   }
-  startPressed()
+  startPressed=() =>
   {
       let startTime=new Date();
       if(this.state.isRunning)
@@ -81,13 +75,13 @@ export default class extends Component{
           )},30);
       }
     }
-  lapPressed()
+  lapPressed=() =>
   {
       this.setState({
         laps:[convert(this.state.timeElapsed)].concat(this.state.laps)
       });
   }
-  resetPressed()
+  resetPressed=()=>
   {
 
 
@@ -117,17 +111,6 @@ export default class extends Component{
           {this.displayLaps()}
         </View>
       </View>
-
-      // {/* <ShowLaps /> */}
-      // {/* <View style={styles.Upper}>
-      //   <View style={styles.textStyle}>
-      //     <Text>00.00.00</Text>
-      // </View>
-      // <View style={styles.viewSt}>
-      //   <Text>Hi</Text>
-      //   <Text>Hello</Text>
-      // </View>
-      // </View> */}
 
   );
   }
