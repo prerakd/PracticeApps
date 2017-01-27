@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {View, ListView, Text} from 'react-native';
-import ProdCategory from './ProdCategory';
-import ProdDetails from './ProdDetails'
-import styles from './myStyles'
+import ProductCategory from '../productCategory';
+import ProductDetails from '../productDetails'
+import styles from './productTable.style'
 export default class ProductTable extends Component {
     constructor(props)
     {
@@ -27,11 +27,11 @@ export default class ProductTable extends Component {
     }
 
     renderList = (rowData) => {
-        return (<ProdDetails price={rowData.price} name={rowData.name} stock={rowData.stockOnly}/>)
+        return (<ProductDetails price={rowData.price} name={rowData.name} stock={rowData.stockOnly}/>)
     }
 
     renderCategory = (SectionData, category) => {
-        return (<ProdCategory categ={category}/>)
+        return (<ProductCategory categ={category}/>)
     }
 
     mapStocks = () => {

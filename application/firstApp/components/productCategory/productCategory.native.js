@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet} from 'react-native'
-import styles from './productCategory.styles'
-export default class ProdCategory extends Component {
+import styles from './productCategory.style'
+export default class ProductCategory extends Component {
     render()
     {
         return (
@@ -11,13 +11,3 @@ export default class ProdCategory extends Component {
         );
     }
 }
-let styles = StyleSheet.create({
-    textStyle: {
-        fontWeight: "bold"
-    },
-
-    rowStyle: {
-        padding: 12,
-        height: 44
-    }
-})

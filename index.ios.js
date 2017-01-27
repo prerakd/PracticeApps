@@ -193,7 +193,7 @@
 // AppRegistry.registerComponent('AwesomeProject', () => Init);
 //import React, {Component} from 'react';
 import {AppRegistry} from 'react-native'
-import Init from './application/components/firstApp/Init'
+import Init from './application/firstApp/components/init'
 import MockApp2 from './application/components/secondApp/MockApp2'
 import Stopwatch from './application/components/thirdApp/Stopwatch'
 import YoDawgApp from './/application/components/navigationBasics/YoDawgApp'

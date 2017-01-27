@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import CheckBox from 'react-native-checkbox';
 import {View, StyleSheet, TextInput} from 'react-native';
-import styles from './myStyles.js'
+import styles from './searchbar.style'
 
 export default class SearchBar extends Component {
     constructor(props)
