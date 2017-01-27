@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {AppRegistry, Text, View,TextInput,ListView,StyleSheet} from 'react-native';
 import convert from 'minutes-seconds-milliseconds'
+import styles from './showTime.style'
 export default class ShowTime extends Component{
   render()
   {
@@ -12,17 +13,3 @@ export default class ShowTime extends Component{
     );
   }
 }
-let styles=StyleSheet.create({
-  textStyle:{
-    flex:1,
-    justifyContent:"center",
-    alignItems:"center",
-
-  },
-  timeStyle:{
-      fontSize:50,
-  },
-
-}
-
-)

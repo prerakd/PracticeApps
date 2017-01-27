@@ -71,4 +71,6 @@ export default class ToDoScreen extends Component {
 
                 </View>
                 {this.displayTodos()}
-            </View>
+            </View>);
+          }
+        }
