@@ -46,9 +46,11 @@ export default class ToDoScreen extends Component {
         });
 
         entries = this.state.ds.cloneWithRows(entries);
-        return (<ListView dataSource={entries} renderRow={(rowData) =>< View > {
-            rowData
-        } < /View>}/>);
+        return (
+          <ListView
+            dataSource={entries}
+            renderRow={(rowData) => < View>{rowData}< /View>} />
+      );
     }
     doSomething = () => {
         this.props.addmain(this.state.todoList)
@@ -71,6 +73,6 @@ export default class ToDoScreen extends Component {
 
                 </View>
                 {this.displayTodos()}
-            </View>);
+            </View>)
           }
         }
