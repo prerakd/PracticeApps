@@ -8,10 +8,11 @@ export default class ScrollComponent extends Component {
   {
     super(props);
     this.count=0;
-  this.state={
-    imageArr:[],
-    dummy: dummydata.src,
-  }
+    this.offset=0;
+    this.dummy=dummydata.src;
+    this.state={
+      imageArr:[],
+    }
   }
   componentWillMount()
   {
@@ -19,48 +20,57 @@ export default class ScrollComponent extends Component {
     let temp=[];
     for(let i=0;i<3;i++)
     {
-      temp.push('https://facebook.github.io/react/img/logo_og.png');
+      temp.push(this.dummy[i]);
       this.count++;
     }
     this.setState({
       imageArr:this.state.imageArr.concat(temp),
     })
-  }
-  addItems = () =>
-  {
-    let temp=[];
-    for(let i=0;i<1;i++)
-    {
-      temp.push('https://facebook.github.io/react/img/logo_og.png');
-      this.count++;
-    }
-    this.setState({
-      imageArr:this.state.imageArr.concat(temp),
-    })
-  }
-  render()
-  {
 
+  }
+  addItems = (event) =>
+  {
+      //let currentOffset = event.nativeEvent.contentOffset.y;
+      //this.offset = currentOffset;
+
+    let temp=[];
+    for(let i=0;i<1 && this.count<this.dummy.length;i++)
+    {
+      temp.push(this.dummy[this.count]);
+      this.count++;
+    }
+    this.setState({
+      imageArr:this.state.imageArr.concat(temp),
+    })
+
+  }
+  formList=()=>
+  {
     let arr=[];
     for(let i=0;i<this.state.imageArr.length;i++)
     {
-      console.log(this.state.imageArr[i]);
       arr.push(
         <TouchableHighlight onPress={() => Actions.pop()}>
             <Image
             style={{width: 100, height: 100}}
-            source={{uri:'https://facebook.github.io/react/img/logo_og.png'}}
+            source={{uri:this.state.imageArr[i]}}
             />
         </TouchableHighlight>
       );
     }
+    return arr;
+  }
+  render()
+  {
+
+    let list=this.formList();
     return(
       <View>
       <Text>
         ScrollView Page
       </Text>
       <ScrollView contentContainerStyle={{alignItems:"center",justifyContent:"center"}} onScroll={this.addItems}>
-        {arr}
+        {list}
       </ScrollView>
     </View>
     );
