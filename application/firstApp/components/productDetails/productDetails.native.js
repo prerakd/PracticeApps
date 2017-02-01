@@ -13,32 +13,11 @@ export default class ProductDetails extends Component {
         return (
             <View>
                 <View style={styles.rowStyle}>
-                    <Text style={colo}>{this.props.name}</Text>
-                    <Text>{this.props.price}</Text>
+                    <Text style={[styles.padLeft,colo]}>{this.props.name}</Text>
+                    <Text style={styles.padRight}>{this.props.price}</Text>
                 </View>
                 <View style={styles.separator}/>
             </View>
         );
     }
 }
-// const styles = StyleSheet.create({
-//
-//   stockStyle: {
-//     color: 'black',
-//     width:100
-//   },
-//   nonStockStyle:{
-//     color: 'red',
-//     width:100
-//   },
-//   separator:{
-//     height:1,
-//     backgroundColor:"rgb(0,0,255)",
-//   },
-//   rowStyle:{
-//     flexDirection:"row",
-//     padding:12,
-//     height:44,
-//   }
-//
-// });

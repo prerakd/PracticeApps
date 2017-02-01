@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+aimport React, {Component} from 'react';
 import CheckBox from 'react-native-checkbox';
 import {View, StyleSheet, TextInput} from 'react-native';
 import styles from './searchbar.style'
@@ -30,33 +30,9 @@ export default class SearchBar extends Component {
 
         return (
             <View style={styles.viewStyle}>
-                <TextInput style={styles.textStyle} placeholder="     Search..." onChangeText={this.handleChange}/>
-                <CheckBox containerStyle={styles.containStyle} checkboxStyle={styles.checkboxStyle} labelStyle={styles.labStyle} label='Show only stocked' checked={this.state.isChecked} onChange={this.handleCheckBox}/>
+                <TextInput underlineColorAndroid='transparent' autoCapitalize= "none" style={styles.textStyle} placeholder="     Search..." onChangeText={this.handleChange}/>
+                <CheckBox underlayColor="transparent" containerStyle={styles.containStyle} checkboxStyle={styles.checkboxStyle} labelStyle={styles.labStyle} label='Show only stocked' checked={this.state.isChecked} onChange={this.handleCheckBox}/>
             </View>
         );
     }
 }
-// const styles = StyleSheet.create({
-//   labStyle:{
-//     color:"black",
-//   },
-//   checkboxStyle:{
-//     height:15,
-//     width:15,
-//     marginLeft:25
-//   },
-//   containStyle:{
-//     backgroundColor:"steelblue"
-//   },
-//   textStyle:{
-//     height: 40,
-//     margin:25,
-//     borderWidth:1,
-//     width:300
-//   },
-//   viewStyle:
-//     {flexGrow: 1,
-//       backgroundColor: "steelblue"
-//     }
-//
-// });

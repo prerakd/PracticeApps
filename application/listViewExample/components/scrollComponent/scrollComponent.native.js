@@ -12,36 +12,58 @@ export default class ScrollComponent extends Component {
     this.dummy=dummydata.src;
     this.state={
       imageArr:[],
+      prevOffset:0,
     }
   }
   componentWillMount()
   {
 
     let temp=[];
-    for(let i=0;i<3;i++)
+    for(let i=0;i<6;i++)
     {
       temp.push(this.dummy[i]);
       this.count++;
     }
     this.setState({
       imageArr:this.state.imageArr.concat(temp),
+      prevOffset:100,
+    },()=>{
+      // console.log(currentOffset);
+      console.log(this.state.prevOffset);
     })
 
   }
   addItems = (event) =>
   {
-      //let currentOffset = event.nativeEvent.contentOffset.y;
-      //this.offset = currentOffset;
+      let currentOffset = event.nativeEvent.contentOffset.y;
+      //console.log(currentOffset);
+      console.log(this.state.imageArr.length);
+      // if(currentOffset>this.offset)
+      //   console.log("up");
+      //   else {
+      //     console.log("down");
+      //   }
+        //console.log(currentOffset);
+        //console.log(this.state.prevOffset);
+          let temp=[];
 
-    let temp=[];
-    for(let i=0;i<1 && this.count<this.dummy.length;i++)
-    {
-      temp.push(this.dummy[this.count]);
-      this.count++;
-    }
-    this.setState({
-      imageArr:this.state.imageArr.concat(temp),
-    })
+          let addValue=0;
+          if(currentOffset>this.state.prevOffset)
+          {
+            //console.log(currentOffset+" "+this.state.prevOffset);
+            //temp.splice(0,3);
+            //console.log("here"+" "+this.count);
+            for(let i=0;i<3 && this.count<this.dummy.length;i++)
+            {
+              temp.push(this.dummy[this.count]);
+              this.count++;
+            }
+            addValue=100;
+        }
+        this.setState({
+          imageArr:this.state.imageArr.concat(temp),
+          prevOffset:this.state.prevOffset+addValue,
+        })
 
   }
   formList=()=>
@@ -51,10 +73,10 @@ export default class ScrollComponent extends Component {
     {
       arr.push(
         <TouchableHighlight onPress={() => Actions.pop()}>
-            <Image
-            style={{width: 100, height: 100}}
-            source={{uri:this.state.imageArr[i]}}
-            />
+          <Image
+          style={{width: 100, height: 100, borderColor:'red'}}
+          source={{uri:this.state.imageArr[i]}}
+          />
         </TouchableHighlight>
       );
     }
@@ -63,13 +85,14 @@ export default class ScrollComponent extends Component {
   render()
   {
 
+
     let list=this.formList();
     return(
       <View>
       <Text>
         ScrollView Page
       </Text>
-      <ScrollView contentContainerStyle={{alignItems:"center",justifyContent:"center"}} onScroll={this.addItems}>
+      <ScrollView contentContainerStyle={{alignItems:"center",justifyContent:"center"}} onScroll={this.addItems} scrollEventThrottle={16}>
         {list}
       </ScrollView>
     </View>

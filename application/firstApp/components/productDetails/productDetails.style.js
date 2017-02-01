@@ -17,6 +17,13 @@ export default StyleSheet.create({
     flexDirection:"row",
     padding:12,
     height:44,
+    justifyContent:'space-between'
+  },
+  padLeft:{
+    paddingLeft:20,
+  }
+  ,padRight:{
+    paddingRight:20,
   }
 
 });

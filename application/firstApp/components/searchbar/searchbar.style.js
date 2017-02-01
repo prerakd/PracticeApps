@@ -20,6 +20,6 @@ export default StyleSheet.create({
   viewStyle:
     {flexGrow: 1,
       backgroundColor: "steelblue"
-    }
+    },
 
 });

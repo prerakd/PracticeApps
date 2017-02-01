@@ -40,7 +40,6 @@ export default class Stopwatch extends Component{
 
     );
   }
-
   setButtonStyle=()=>{
     let col;
     if(this.state.isRunning)
